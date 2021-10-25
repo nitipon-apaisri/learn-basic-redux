@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+//For selecting the part of data from store
+const mapState = (state) => {
+    return {
+        test: state,
+    };
+};
 
-export default App;
+const App = (props) => {
+    const run = () => {
+        props.dispatch({ type: "TEST1" });
+    };
+    return (
+        <div>
+            <h1>Hello World!</h1>
+            <button onClick={run}>Run!</button>
+            {props.test}
+        </div>
+    );
+};
+export default connect(mapState)(App);
